@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en"><head>
+
+    <%- include ('partials/head.meta.ejs') %>
+  <title><%= navigation.main %> | <%= navigation.page %></title>
+   <%- include ('partials/head.link.ejs') %>
+
+
+
+</head>
+
+<body>
+  <div class="page-layout">
+
+    <%- include ('partials/navbar.ejs') %>
+
+    <%- include ('partials/sidebar.ejs') %>
+
+    <main class="app-wrapper">
+
+      <div class="container-fluid">
+
+        <div class="app-page-head d-flex align-items-center justify-content-between">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+              <li class="breadcrumb-item">
+                <a href="index_1.html">
+                  <i class="fi fi-rr-home"></i> <%= navigation.main %>
+                </a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page"><%= navigation.page %></li>
+            </ol>
+          </nav>
+        </div>
+
+        <div class="row">
+            <%- body %>
+        </div>
+      </div>
+
+    </main>
+    <%- include ('./partials/footer.ejs') %>
+  </div>
+  <%- include ('./partials/script.ejs') %>
+</body></html>

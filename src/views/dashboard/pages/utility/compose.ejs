@@ -1,0 +1,81 @@
+<div class="col-12">
+    <div class="card card-body overflow-hidden mail-wrapper p-0">
+        <div class="sidebar-mobile-overlay"></div>
+        <div class="mail-sidebar bg-light">
+            <div class="px-3 pt-3 mb-2">
+                <button class="btn btn-primary waves-effect waves-light w-100" onclick="window.location.reload()">
+                    Refresh
+                </button>
+            </div>
+            <div class="d-grid gap-2 p-2 mail-nav" id="myTab" role="tablist" data-simplebar="">
+                <a href="/notifications" class="mail-nav-item active">
+                    <i class="fi fi-rr-inbox-in me-2"></i> Inbox
+                    <span class="badge badge-sm bg-primary-subtle text-primary ms-auto">247</span>
+                </a>
+                <a href="#" class="mail-nav-item">
+                    <i class="fi fi-rr-paper-plane-top me-2"></i> Sent
+                </a>
+                <a href="#" class="mail-nav-item">
+                    <i class="fi fi-rr-blueprint me-2"></i> Drafts
+                </a>
+                <a href="#" class="mail-nav-item">
+                    <i class="fi fi-rr-trash me-2"></i> Trash
+                </a>
+                <a href="#" class="mail-nav-item">
+                    <i class="fi fi-rr-star me-2"></i> Starred
+                </a>
+                <a href="#" class="mail-nav-item">
+                    <i class="fi fi-rr-box me-2"></i> Archive
+                </a>
+                <a href="#" class="mail-nav-item">
+                    <i class="fi fi-rr-calendar me-2"></i> Scheduled
+                </a>
+            </div>
+        </div>
+        <div class="mail-body">
+            <div class="mail-header">
+                <button class="btn btn-white btn-shadow btn-icon waves-effect mail-sidebar-toggler d-lg-none">
+                    <i class="fi fi-rs-list"></i>
+                </button>
+                <h6 class="mb-0 me-auto">New Message</h6>
+            </div>
+            <div class="px-4 py-3">
+                <ul class="list-group list-group-flush border-bottom">
+                    <li class="list-group-item d-flex align-items-center px-0 py-0">
+                        <span class="text-body minw-100px">To</span>
+                        <input class="form-control border-0 shadow-none tagify-input px-2" name="basic"
+                            value="seyfooksck@example.com">
+                    </li>
+                    <li class="list-group-item d-flex align-items-center px-0 py-0">
+                        <span class="text-body minw-100px">CC</span>
+                        <input class="form-control border-0 shadow-none tagify-input px-2" name="basic"
+                            value="seyfooksck@example.com, info@seyfooksck.com, info@seyfooksck.dev">
+                    </li>
+                    <li class="list-group-item d-flex align-items-center px-0 py-2">
+                        <span class="text-body minw-100px">Subject</span>
+                        <input type="text" class="form-control border-0 shadow-none text-dark"
+                            value="Nodejs Project">
+                    </li>
+                </ul>
+            </div>
+            <textarea class="form-control mail-textarea">Hi Seyfo,
+
+I want to ask you about Nodejs Project.
+
+Warm regards,
+Team LayoutDrop
+							</textarea>
+            <div class="d-flex px-4 py-2">
+                <button type="button" class="btn btn-primary waves-effect waves-light">
+                    Send Message
+                </button>
+                <button type="button" class="btn btn-action-gray text-dark btn-icon waves-effect waves-light ms-3">
+                    <i class="fi fi-rr-link-alt"></i>
+                </button>
+                <button type="button" class="btn btn-action-gray text-dark btn-icon waves-effect waves-light ms-1">
+                    <i class="fi fi-rr-add-image"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

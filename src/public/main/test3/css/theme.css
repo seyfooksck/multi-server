@@ -1,0 +1,354 @@
+/* ============================================
+   TEST3 THEME — Colorful / Bold / Vibrant
+   ============================================ */
+
+:root {
+    --bg-primary: #1a1035;
+    --bg-secondary: #231548;
+    --text-primary: #ffffff;
+    --text-secondary: #c4b5e0;
+    --gradient-main: linear-gradient(135deg, #ff6b35, #f72585, #7209b7);
+    --gradient-button: linear-gradient(135deg, #f72585, #7209b7);
+    --gradient-card-1: linear-gradient(135deg, #ff6b35, #f72585);
+    --gradient-card-2: linear-gradient(135deg, #f72585, #7209b7);
+    --gradient-card-3: linear-gradient(135deg, #7209b7, #3a0ca3);
+    --accent-pink: #f72585;
+    --accent-orange: #ff6b35;
+    --accent-purple: #7209b7;
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ---- Background Shapes ---- */
+.bg-shapes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.3;
+}
+
+.shape-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent-orange);
+    top: -100px;
+    right: -100px;
+    animation: morphShape 8s ease-in-out infinite;
+}
+
+.shape-2 {
+    width: 350px;
+    height: 350px;
+    background: var(--accent-pink);
+    bottom: -50px;
+    left: -50px;
+    animation: morphShape 10s ease-in-out infinite reverse;
+}
+
+.shape-3 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-purple);
+    top: 40%;
+    left: 50%;
+    animation: morphShape 12s ease-in-out infinite;
+}
+
+@keyframes morphShape {
+
+    0%,
+    100% {
+        border-radius: 50%;
+        transform: scale(1) rotate(0deg);
+    }
+
+    33% {
+        border-radius: 40% 60% 70% 30%;
+        transform: scale(1.1) rotate(30deg);
+    }
+
+    66% {
+        border-radius: 60% 40% 30% 70%;
+        transform: scale(0.95) rotate(-20deg);
+    }
+}
+
+/* ---- Navbar ---- */
+.theme-nav {
+    background: rgba(26, 16, 53, 0.8) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 0.8rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.brand-bold {
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--text-primary) !important;
+    letter-spacing: -0.5px;
+}
+
+.theme-nav .nav-link {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.theme-nav .nav-link:hover {
+    color: var(--accent-pink) !important;
+}
+
+.theme-dropdown {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.theme-dropdown .dropdown-item {
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.theme-dropdown .dropdown-item:hover {
+    background: var(--gradient-button);
+    color: #fff;
+}
+
+/* ---- Hero ---- */
+.hero-vibrant {
+    position: relative;
+    z-index: 1;
+    padding: 5rem 0 3rem;
+}
+
+.hero-pill {
+    display: inline-block;
+    padding: 0.4rem 1.2rem;
+    background: var(--gradient-main);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 50px;
+    margin-bottom: 1.5rem;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.hero-img-vibrant {
+    filter: drop-shadow(0 0 25px rgba(247, 37, 133, 0.4));
+    animation: bounceFloat 4s ease-in-out infinite;
+}
+
+@keyframes bounceFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.hero-gradient-text {
+    background: var(--gradient-main);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.hero-text-vibrant {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+}
+
+/* ---- Buttons ---- */
+.btn-gradient {
+    background: var(--gradient-button);
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 14px;
+    padding: 0.8rem 2.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(247, 37, 133, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-gradient::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transform: rotate(45deg);
+    animation: btnShine 3s ease-in-out infinite;
+}
+
+@keyframes btnShine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+
+    30%,
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+.btn-gradient:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 30px rgba(247, 37, 133, 0.5);
+    color: #fff;
+}
+
+.btn-glass {
+    border: 2px solid var(--border-glass);
+    color: var(--text-primary);
+    font-weight: 600;
+    border-radius: 14px;
+    padding: 0.8rem 2.2rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+    border-color: var(--accent-pink);
+    color: #fff;
+    transform: translateY(-3px);
+    background: rgba(247, 37, 133, 0.1);
+}
+
+/* ---- Vibrant Cards ---- */
+.vibrant-card {
+    border-radius: 18px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    border: 1px solid var(--border-glass);
+    background: rgba(255, 255, 255, 0.04);
+    overflow: hidden;
+}
+
+.vibrant-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    border-radius: 18px 18px 0 0;
+}
+
+.vibrant-card-1::before {
+    background: var(--gradient-card-1);
+}
+
+.vibrant-card-2::before {
+    background: var(--gradient-card-2);
+}
+
+.vibrant-card-3::before {
+    background: var(--gradient-card-3);
+}
+
+.vibrant-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(247, 37, 133, 0.3);
+    box-shadow: 0 12px 40px rgba(247, 37, 133, 0.15);
+}
+
+.vibrant-card-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.vibrant-card h3 {
+    color: var(--text-primary);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.vibrant-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* ---- Info Box ---- */
+.vibrant-info {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glass);
+    border-radius: 14px;
+    padding: 1.5rem;
+    color: var(--text-secondary);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+}
+
+.vibrant-info strong {
+    color: var(--accent-pink);
+}
+
+/* ---- Footer ---- */
+.theme-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-glass);
+    color: var(--text-secondary);
+    margin-top: auto;
+    position: relative;
+    z-index: 1;
+}

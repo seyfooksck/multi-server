@@ -1,0 +1,166 @@
+<div class="col-lg-8 mx-auto">
+    <% if (error) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fi fi-rr-exclamation me-2"></i>
+            <%= error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% } %>
+
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="card-title mb-0">
+                        <i class="fi fi-rr-<%= isEdit ? 'pencil' : 'plus' %> me-2"></i>
+                        <%= isEdit ? 'Edit Language' : 'Add New Language' %>
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form action="<%= isEdit ? '/languages/edit/' + language._id : '/languages/add' %>" method="POST"
+                        id="languageForm">
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="langCode" class="form-label">Language Code <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="langCode" name="code"
+                                    placeholder="e.g. en, tr, de" value="<%= isEdit && language ? language.code : '' %>"
+                                    required maxlength="10">
+                                <div class="form-text">ISO 639-1 format (e.g. en, tr, de, fr)</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="langTitle" class="form-label">Language Title <span
+                                        class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="langTitle" name="title"
+                                    placeholder="e.g. English, Türkçe"
+                                    value="<%= isEdit && language ? language.title : '' %>" required>
+                                <div class="form-text">Display name of the language</div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="langFlag" class="form-label">Flag</label>
+                                <input type="text" class="form-control" id="langFlag" name="flag"
+                                    placeholder="e.g. 🇹🇷 or URL to flag image"
+                                    value="<%= isEdit && language ? language.flag : '' %>">
+                                <div class="form-text">Emoji flag or image URL</div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label d-block">Default Language</label>
+                                <div class="form-check form-switch mt-2">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="langIsDefault"
+                                        name="isDefault" <% if (isEdit && language && language.isDefault) { %>checked<%
+                                        } %>>
+                                        <label class="form-check-label" for="langIsDefault">
+                                            Set as default language
+                                        </label>
+                                </div>
+                                <div class="form-text">Only one language can be default at a time</div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <div class="mb-3">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                <label class="form-label mb-0">
+                                    <i class="fi fi-rr-document me-1"></i> Translation Strings
+                                </label>
+                                <button type="button" class="btn btn-sm btn-outline-primary waves-effect"
+                                    id="addStringBtn">
+                                    <i class="fi fi-rr-plus me-1"></i> Add String
+                                </button>
+                            </div>
+
+                            <div id="stringsContainer">
+                                <% for (var si=0; si < flatEntries.length; si++) { %>
+                                    <div class="row mb-2 string-row align-items-center">
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control form-control-sm" name="stringKeys[]"
+                                                placeholder="KEY" value="<%= flatEntries[si][0] %>">
+                                        </div>
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control form-control-sm"
+                                                name="stringValues[]" placeholder="Value"
+                                                value="<%= flatEntries[si][1] %>">
+                                        </div>
+                                        <div class="col-md-1 text-center">
+                                            <button type="button"
+                                                class="btn btn-sm btn-soft-danger waves-effect remove-string-btn"
+                                                title="Remove">
+                                                <i class="fi fi-rr-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                            </div>
+
+                            <div id="emptyStringsMessage" class="text-center py-4 text-muted border rounded-3" <% if
+                                (flatEntries.length> 0) { %>style="display:none;"<% } %>>
+                                    <i class="fi fi-rr-document d-block mb-2" style="font-size: 1.5rem;"></i>
+                                    <small>No translation strings yet. Click "Add String" to add one.</small>
+                            </div>
+                        </div>
+
+                        <div class="d-flex gap-2 justify-content-between align-items-center pt-2 border-top">
+                            <a href="/languages" class="btn btn-light waves-effect">
+                                <i class="fi fi-rr-arrow-left me-1"></i> Back to List
+                            </a>
+                            <div class="d-flex gap-2">
+                                <a href="/languages" class="btn btn-outline-secondary waves-effect">Cancel</a>
+                                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                    <i class="fi fi-rr-check me-1"></i>
+                                    <%= isEdit ? 'Update Language' : 'Add Language' %>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var container = document.getElementById('stringsContainer');
+        var addBtn = document.getElementById('addStringBtn');
+        var emptyMsg = document.getElementById('emptyStringsMessage');
+
+        function updateEmptyMessage() {
+            var rows = container.querySelectorAll('.string-row');
+            emptyMsg.style.display = rows.length === 0 ? '' : 'none';
+        }
+
+        function createStringRow(key, value) {
+            var row = document.createElement('div');
+            row.className = 'row mb-2 string-row align-items-center';
+            row.innerHTML =
+                '<div class="col-md-4">' +
+                '<input type="text" class="form-control form-control-sm" name="stringKeys[]" placeholder="KEY" value="' + (key || '') + '">' +
+                '</div>' +
+                '<div class="col-md-7">' +
+                '<input type="text" class="form-control form-control-sm" name="stringValues[]" placeholder="Value" value="' + (value || '') + '">' +
+                '</div>' +
+                '<div class="col-md-1 text-center">' +
+                '<button type="button" class="btn btn-sm btn-soft-danger waves-effect remove-string-btn" title="Remove">' +
+                '<i class="fi fi-rr-trash"></i>' +
+                '</button>' +
+                '</div>';
+            return row;
+        }
+
+        addBtn.addEventListener('click', function () {
+            var row = createStringRow('', '');
+            container.appendChild(row);
+            updateEmptyMessage();
+            row.querySelector('input[name="stringKeys[]"]').focus();
+        });
+
+        container.addEventListener('click', function (e) {
+            var removeBtn = e.target.closest('.remove-string-btn');
+            if (removeBtn) {
+                removeBtn.closest('.string-row').remove();
+                updateEmptyMessage();
+            }
+        });
+    });
+</script>

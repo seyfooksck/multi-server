@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="hero-section text-center">
+        <div class="hero-glow"></div>
+        <img class="d-block mx-auto mb-4 hero-logo" src="https://nodejs.org/static/images/logo.svg" alt="Node.js"
+            width="120">
+        <h1 class="display-4 fw-bold hero-title">
+            <%= t('HERO.TITLE') %>
+        </h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4 hero-subtitle">
+                <%= t('HERO.SUBTITLE') %>
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <button type="button" class="btn btn-neon btn-lg px-4 gap-3">
+                    <%= t('GET.STARTED') %>
+                </button>
+                <button type="button" class="btn btn-outline-neon btn-lg px-4">
+                    <%= t('LEARN.MORE') %>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Fast</h3>
+                <p>Lightning-fast performance with Node.js runtime</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Secure</h3>
+                <p>Built-in security with Helmet and best practices</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>i18n Ready</h3>
+                <p>Multi-language support out of the box</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="glass-card text-center">
+                <strong>Test Key:</strong>
+                <%= t('TEST.TEST.TEST.TEST') %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,231 @@
+/* ============================================
+   TEST1 THEME — Dark Mode / Glassmorphism
+   ============================================ */
+
+:root {
+    --bg-primary: #0a0a1a;
+    --bg-secondary: #12122a;
+    --bg-card: rgba(255, 255, 255, 0.05);
+    --text-primary: #e0e0ff;
+    --text-secondary: #8888aa;
+    --accent: #6c63ff;
+    --accent-cyan: #00e5ff;
+    --accent-glow: rgba(108, 99, 255, 0.4);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ---- Navbar ---- */
+.theme-nav {
+    background: rgba(10, 10, 26, 0.85) !important;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 0.8rem 0;
+}
+
+.brand-glow {
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--accent-cyan) !important;
+    text-shadow: 0 0 20px rgba(0, 229, 255, 0.5);
+    transition: text-shadow 0.3s ease;
+}
+
+.brand-glow:hover {
+    text-shadow: 0 0 30px rgba(0, 229, 255, 0.8);
+}
+
+.brand-icon {
+    font-size: 1.4rem;
+}
+
+.theme-nav .nav-link {
+    color: var(--text-secondary) !important;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.theme-nav .nav-link:hover,
+.theme-nav .nav-link.active {
+    color: var(--accent-cyan) !important;
+}
+
+.theme-dropdown {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.theme-dropdown .dropdown-item {
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.theme-dropdown .dropdown-item:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* ---- Hero Section ---- */
+.hero-section {
+    position: relative;
+    padding: 5rem 0 3rem;
+}
+
+.hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    animation: pulseGlow 4s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.hero-logo {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.4));
+    animation: floatLogo 3s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.hero-title {
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    position: relative;
+    z-index: 1;
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+}
+
+/* ---- Buttons ---- */
+.btn-neon {
+    background: linear-gradient(135deg, var(--accent), var(--accent-cyan));
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 0.75rem 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--accent-glow);
+    color: #fff;
+}
+
+.btn-outline-neon {
+    border: 2px solid var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+    border-radius: 12px;
+    padding: 0.75rem 2rem;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-neon:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--accent-glow);
+}
+
+/* ---- Feature Cards ---- */
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 8px 32px rgba(108, 99, 255, 0.15);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+/* ---- Glass Card ---- */
+.glass-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--accent-cyan);
+}
+
+.glass-card strong {
+    color: var(--text-primary);
+}
+
+/* ---- Footer ---- */
+.theme-footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-glass);
+    color: var(--text-secondary);
+    margin-top: auto;
+}

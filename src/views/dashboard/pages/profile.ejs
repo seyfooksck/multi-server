@@ -1,0 +1,203 @@
+<div class="col-lg-4 col-sm-12">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header pb-0 border-0">
+                    <div class="mb-4 border-bottom pb-4 d-flex border-0 justify-content-between align-items-start">
+                        <div class="d-flex align-items-center">
+                            <div class="avatar avatar-xl rounded-circle position-relative me-3 bg-primary text-white d-flex align-items-center justify-content-center"
+                                style="width:64px;height:64px;font-size:1.5rem;font-weight:700;">
+                                <%= user.username ? user.username.charAt(0).toUpperCase() : '?' %>
+                            </div>
+                            <div class="clearfix">
+                                <h4 class="fw-bold mb-0">
+                                    <%= user.username %>
+                                </h4>
+                                <small class="mb-0">
+                                    <%= role %>
+                                </small>
+                            </div>
+                        </div>
+                        <a href="/profile/edit" class="btn btn-white btn-sm btn-shadow btn-icon waves-effect"
+                            title="Edit Profile">
+                            <i class="fi fi-rr-pencil"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body pt-0">
+
+                    <!-- Basic Information -->
+                    <div class="mb-4 border-bottom pb-4">
+                        <div class="mb-3">
+                            <h4 class="card-title mb-0">Basic Information</h4>
+                        </div>
+                        <div class="clearfix">
+                            <div class="mb-3">
+                                <span class="mb-1">Username</span>
+                                <p class="text-dark fw-semibold mb-0">
+                                    <%= user.username %>
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <span class="mb-1">Email</span>
+                                <p class="text-dark fw-semibold mb-0">
+                                    <%= user.email %>
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <span class="mb-1">Status</span>
+                                <p class="mb-0">
+                                    <span class="badge bg-<%= statusClass %>">
+                                        <%= user.status ? user.status.charAt(0).toUpperCase() + user.status.slice(1)
+                                            : 'Offline' %>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <span class="mb-1">Role</span>
+                                <p class="text-dark fw-semibold mb-0">
+                                    <%= role %>
+                                </p>
+                            </div>
+                            <div class="mb-0">
+                                <span class="mb-1">Joined Date</span>
+                                <p class="text-dark fw-semibold mb-0">
+                                    <%= user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-US', {
+                                        year: 'numeric' , month: 'long' , day: 'numeric' }) : 'N/A' %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account Info -->
+                    <div class="mb-0">
+                        <div class="mb-3">
+                            <h4 class="card-title mb-0">Account Details</h4>
+                        </div>
+                        <div class="clearfix">
+                            <div class="mb-3">
+                                <span class="mb-1">Login Method</span>
+                                <p class="text-dark fw-semibold mb-0">
+                                    <% if (user.googleId) { %>
+                                        <i class="fa-brands fa-google me-1"></i> Google
+                                        <% } else { %>
+                                            <i class="fi fi-rr-envelope me-1"></i> Email & Password
+                                            <% } %>
+                                </p>
+                            </div>
+                            <div class="mb-0">
+                                <span class="mb-1">Last Updated</span>
+                                <p class="text-dark fw-semibold mb-0">
+                                    <%= user.updatedAt ? new Date(user.updatedAt).toLocaleDateString('en-US', {
+                                        year: 'numeric' , month: 'long' , day: 'numeric' }) : 'N/A' %>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-8 col-sm-12">
+    <div class="row">
+
+        <% if (success) { %>
+            <div class="col-12">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="fi fi-rr-check-circle me-2"></i>
+                    <%= success %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+            <% } %>
+                <% if (error) { %>
+                    <div class="col-12">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <i class="fi fi-rr-cross-circle me-2"></i>
+                            <%= error %>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+                    </div>
+                    <% } %>
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Account Overview</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row g-3">
+                                        <div class="col-md-6 col-xl-3">
+                                            <div class="card bg-primary-subtle border-0 mb-0">
+                                                <div class="card-body text-center py-4">
+                                                    <i class="fi fi-rr-user text-primary fs-2 mb-2 d-block"></i>
+                                                    <h6 class="mb-1">Username</h6>
+                                                    <span class="fw-bold text-dark">
+                                                        <%= user.username %>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xl-3">
+                                            <div class="card bg-success-subtle border-0 mb-0">
+                                                <div class="card-body text-center py-4">
+                                                    <i class="fi fi-rr-envelope text-success fs-2 mb-2 d-block"></i>
+                                                    <h6 class="mb-1">Email</h6>
+                                                    <span class="fw-bold text-dark text-truncate d-block">
+                                                        <%= user.email %>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xl-3">
+                                            <div class="card bg-info-subtle border-0 mb-0">
+                                                <div class="card-body text-center py-4">
+                                                    <i class="fi fi-rr-shield-check text-info fs-2 mb-2 d-block"></i>
+                                                    <h6 class="mb-1">Role</h6>
+                                                    <span class="fw-bold text-dark">
+                                                        <%= role %>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-xl-3">
+                                            <div class="card bg-warning-subtle border-0 mb-0">
+                                                <div class="card-body text-center py-4">
+                                                    <i class="fi fi-rr-signal-alt text-warning fs-2 mb-2 d-block"></i>
+                                                    <h6 class="mb-1">Status</h6>
+                                                    <span class="badge bg-<%= statusClass %>">
+                                                        <%= user.status ? user.status.charAt(0).toUpperCase() +
+                                                            user.status.slice(1) : 'Offline' %>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h4 class="card-title mb-0">Quick Actions</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <a href="/profile/edit" class="btn btn-primary waves-effect waves-light">
+                                            <i class="fi fi-rr-pencil me-1"></i> Edit Profile
+                                        </a>
+                                        <a href="/auth/logout" class="btn btn-outline-danger waves-effect waves-light">
+                                            <i class="fi fi-sr-exit me-1"></i> Logout
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+    </div>
+</div>
